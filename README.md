@@ -4,4 +4,4 @@ object to handle set and playing media srouces
 
 This is used in conjuction with player.plugin.player-manager
 
-NOTE: this is not a videojs plugin just a global object to handle media and player 
+NOTE: This is not a videojs plugin just a global object to handle media and player 
