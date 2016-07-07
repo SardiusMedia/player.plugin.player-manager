@@ -1,6 +1,6 @@
 # player.plugin.player-manager
 
-object to handle set and playing media srouces
+object to handle and play media sources
 
 This is used in conjuction with player.plugin.player-manager
 
