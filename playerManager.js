@@ -7,7 +7,6 @@ var playerManager = {
   },
   _currentSrc:null,
   endTimeout:null,
-  //videojs needs to calls this when ready
   ready: function ready(fn, doc, addEvent) {
     doc = document, addEvent = 'addEventListener';
     doc[addEvent] ? doc[addEvent]('DOMContentLoaded', fn) : window.attachEvent('onload', fn);
@@ -29,7 +28,6 @@ var playerManager = {
       if (callNow) func.apply(context, args);
     };
   },
-  //not needed if using float videojs setting
   aspectRatio: function(args) {
     var ratio = [
       args.maxWidth / args.srcWidth,
@@ -41,7 +39,6 @@ var playerManager = {
       height: args.srcHeight * ratio
     };
   },
-  //not needed if using float videojs setting
   getVideoSize: function() {
     var videoSize = { height: 1, width: 1};
     var sourceList =    this._sources.video;
@@ -56,7 +53,6 @@ var playerManager = {
 
     return videoSize;
   },
-  //sets all bitrates (used in conjunction with plugins.player.selector-menu repo)
   setSources : function (sources){
      console.log("set srouces", sources)
     if(typeof sources == "object" ){
@@ -74,7 +70,7 @@ var playerManager = {
       var t = this;
       
       Array.prototype.slice.call(sourceList).forEach(function (source, index) {
-        this._sources.video.push({
+        playerManager._sources.video.push({
           id: index,
           selected: source.getAttribute('data-active'),
           label: source.getAttribute('data-label'),
@@ -103,7 +99,6 @@ var playerManager = {
     return this
 
   },
-  //return all bitrate sources that have been set
   getSources: function() {
     return playerManager._sources;
   },
@@ -122,7 +117,7 @@ var playerManager = {
     window.__player__.dimensions.width = ratio.width;*/
     return this
   },
-  //shows the player when ready 
+
   show: function() {
     var loadingItems = document.getElementsByClassName('js--loading');
 
@@ -131,7 +126,6 @@ var playerManager = {
     });
     return this
   },
-  //sets the bitrate to selected 
   setActiveItem: function(index) {
     this._sources;
     
@@ -145,7 +139,6 @@ var playerManager = {
 
     return this
   },
-  //play video based off screen and media sizes
   playAuto:function(){
    
     var bestDim = {
@@ -164,12 +157,10 @@ var playerManager = {
     playerManager.playSrc(this._sources.video[bestDim.index])
     return this
   },
-  //todo play video based off url 
   playUrl:function(){
      console.log("setSourc url")
     return this
   },
-  //plays a vidoe and handels end time
   playSrc: function(selection, auto) {
     if(typeof auto == "undefined"){
       auto = true;
